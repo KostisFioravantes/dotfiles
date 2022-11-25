@@ -1,0 +1,2 @@
+_ap-can-delete-p && RBUFFER=${RBUFFER:1}
+zle ${AUTOPAIR_BKSPC_WIDGET:-backward-delete-char}

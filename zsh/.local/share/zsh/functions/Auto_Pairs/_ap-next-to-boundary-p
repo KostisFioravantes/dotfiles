@@ -1,0 +1,29 @@
+local -A AUTOPAIR_LBOUNDS
+AUTOPAIR_LBOUNDS=(all '[.:/\!]')
+AUTOPAIR_LBOUNDS+=(quotes '[]})a-zA-Z0-9]')
+AUTOPAIR_LBOUNDS+=(spaces '[^{([]')
+AUTOPAIR_LBOUNDS+=(braces '')
+AUTOPAIR_LBOUNDS+=('`' '`')
+AUTOPAIR_LBOUNDS+=('"' '"')
+AUTOPAIR_LBOUNDS+=("'" "'")
+
+local -A AUTOPAIR_RBOUNDS
+AUTOPAIR_RBOUNDS=(all '[[{(<,.:?/%$!a-zA-Z0-9]')
+AUTOPAIR_RBOUNDS+=(quotes '[a-zA-Z0-9]')
+AUTOPAIR_RBOUNDS+=(spaces '[^]})]')
+AUTOPAIR_RBOUNDS+=(braces '')
+
+local -a groups
+groups=(all)
+case $1 in
+	" ") groups+=spaces ;;
+	\'|\"|\`) groups+=quotes ;;
+	\{|\[|\(|\<) groups+=braces ;;
+esac
+groups+=$1
+
+local group
+for group in $groups; do
+	_ap-boundary-p $AUTOPAIR_LBOUNDS[$group] $AUTOPAIR_RBOUNDS[$group] && return 0
+done
+return 1
