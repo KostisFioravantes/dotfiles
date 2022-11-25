@@ -1,0 +1,18 @@
+# Ignore everything inside cache directories.
+*/.cache/*/**
+
+#### Neovim
+###
+nvim/.local/share/nvim/**
+##
+nvim/.config/nvim/**
+!nvim/.config/nvim/init.lua
+
+#### Z-shell
+###
+zsh/.config/zsh/.*
+!zsh/.config/zsh/.zshrc
+
+# Don't let Git ignore empty directories themselves,
+# by not ignoring each indicative empty file inside them.
+!**/.gitkeep
