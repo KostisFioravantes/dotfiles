@@ -38,9 +38,3 @@ do [ ! -f $file ] && :> $file
 done
 
 exec startx $XINITRC
-
-
-
-
-
-
