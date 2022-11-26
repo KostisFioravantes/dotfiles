@@ -27,8 +27,8 @@ mkdir 2>&1 >/dev/null -p\
 [ $XDG_VTNR -ne 1 ] && return
 
 export	XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"\
-	XAUTHORITY="$XDG_CONFIG_HOME/X11/Xauthority"\
-	ERRFILE="$XDG_CONFIG_HOME/X11/xsession-errors"
+	XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"\
+	ERRFILE="$XDG_CONFIG_HOME/X11/.xsession-errors"
 
 mkdir 2>&1 >/dev/null -p\
 	${XINITRC%/*} ${ERRFILE%/*}
