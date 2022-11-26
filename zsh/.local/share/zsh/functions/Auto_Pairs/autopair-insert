@@ -1,0 +1,11 @@
+local rchar="$(_ap-get-pair $KEYS)"
+if [[ $KEYS == (\'|\"|\`| ) ]] && _ap-can-skip-p $KEYS $rchar; then
+	zle forward-char
+elif _ap-can-pair-p; then
+	LBUFFER+=$KEYS
+	RBUFFER="$rchar$RBUFFER"
+elif [[ $rchar == " " ]]; then
+	zle ${AUTOPAIR_SPC_WIDGET:-self-insert}
+else
+	zle self-insert
+fi
