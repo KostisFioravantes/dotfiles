@@ -1,12 +1,6 @@
 # Ignore everything inside cache directories.
 */.cache/*/**
 
-#### X11
-###
-X11/.config/X11/**
-!X11/.config/X11/.xinitrc
-!X11/.config/X11/Xresources
-
 #### Z-shell
 ###
 zsh/.config/zsh/.*
