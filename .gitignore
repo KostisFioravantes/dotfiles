@@ -3,9 +3,7 @@
 
 #### X11
 ###
-X11/.config/X11/**
-!X11/.config/X11/.xinitrc
-!X11/.config/X11/Xresources
+X11/.config/X11/.*
 
 #### Z-shell
 ###
