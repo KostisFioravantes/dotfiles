@@ -16,7 +16,7 @@ export	GOPATH="$XDG_CONFIG_HOME/go"\
 
 export	LESSHISTFILE=-
 
-PATH="$PATH:${XDG_DATA_HOME%/*}/bin:"
+PATH="$PATH:${XDG_DATA_HOME%/*}/bin"
 
 mkdir 2>&1 >/dev/null -p\
 	$XDG_CACHE_HOME $XDG_CONFIG_HOME $XDG_DATA_HOME\
