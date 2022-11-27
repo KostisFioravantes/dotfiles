@@ -46,9 +46,9 @@ setopt	INTERACTIVE_COMMENTS
 
 for file in\
 	"$ZDOTDIR/vi_emulation.zsh"\
-	"$XDG_CONFIG_HOME/shell/colors.sh"\
-	"$XDG_CONFIG_HOME/shell/regexs.sh"\
-	"$XDG_CONFIG_HOME/shell/aliases.sh"
+	"$XDG_DATA_HOME/zsh/colors.sh"\
+	"$XDG_DATA_HOME/zsh/regexs.sh"\
+	"$XDG_DATA_HOME/zsh/aliases.sh"
 do source $file
 done
 

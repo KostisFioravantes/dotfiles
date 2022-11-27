@@ -1,6 +1,13 @@
 # Ignore everything inside cache directories.
 */.cache/*/**
 
+<<<<<<< HEAD
+=======
+#### X11
+###
+X11/.config/X11/.*
+
+>>>>>>> e0b4f51
 #### Z-shell
 ###
 zsh/.config/zsh/.*
