@@ -9,6 +9,7 @@ X11/.config/X11/.*
 ###
 zsh/.config/zsh/.*
 !zsh/.config/zsh/.zshrc
+!zsh/.config/zsh/.zprofile
 
 #### Neovim
 ###
