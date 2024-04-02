@@ -1,0 +1,81 @@
+[colors]
+foreground = #c5c8c6
+background = #282a2e
+background-alt = #373b41
+primary = #f0c674
+secondary = #8abeb7
+alert = #a54242
+disable = #707880
+
+[bar/main]
+width = 100%
+height = 20pt
+radius = 2
+
+padding-left = 0
+padding-right = 1
+module-margin = 1
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3pt
+border-size = 4pt
+border-color = #00000000
+
+separator = ‖
+separator-foreground = ${colors.disable}
+font-0 = monospace;2
+
+modules-left = xworkspaces
+modules-right = pulseaudio xkeyboard cpu wlan eth date
+
+[module/xworkspaces]
+type = internal/xworkspaces
+label-active = %name%
+label-active-padding = 1
+label-active-background = ${colors.background-alt}
+label-active-underline= ${colors.primary}
+
+label-occupied = %name%
+label-occupied-padding = 1
+
+label-urgent = %name%
+label-urgent-padding = 1
+label-urgent-background = ${colors.alert}
+
+label-empty = %name%
+label-empty-padding = 1
+label-empty-foreground = ${colors.disable}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume-prefix = "VOL "
+format-volume-prefix-foreground = ${colors.primary}
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-muted = muted
+label-muted-foreground = ${colors.disable}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+label-layout = %layout%
+label-layout-foreground = ${colors.primary}
+
+[module/cpu]
+type = internal/cpu
+interval = 10
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.primary}
+label = %percentage:2%%
+
+[module/date]
+type = internal/date
+interval = 20
+time = %H:%M
+date = %A %d-%m-%g
+label = %date% %{F${colors.primary}%time%%{F-}
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
