@@ -1,0 +1,39 @@
+/*
+!.zshenv
+!.gitignore
+!/.config
+/.config/*
+!/.local
+/.local/*
+!/.local/bin
+/.local/bin/*
+!/.local/share
+/.local/share/*
+
+
+# BSPWM
+!/.config/bspwm
+
+# KITTY
+!/.config/kitty
+
+# NVIM
+!/.config/nvim
+
+# POLYBAR
+!/.config/polybar
+
+# SXHKD
+!/.config/sxhkd
+
+# X11
+!/.config/X11
+
+# ZSH
+!/.config/zsh
+!/.local/share/zsh
+!/.local/share/zsh/**
+!/.local/bin/Aliases
+!/.local/bin/History
+!/.local/bin/List_Dir
+!/.local/bin/scratchpad.sh
