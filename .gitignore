@@ -36,4 +36,4 @@
 !/.local/bin/Aliases
 !/.local/bin/History
 !/.local/bin/List_Dir
-!/.local/bin/scratchpad.sh
+!/.local/bin/*.sh
