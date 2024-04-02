@@ -1,0 +1,12 @@
+!! Default font and size.
+*.font: monospace:size=10
+
+!! Default cursor theme.
+Xcursor.theme: Nordzy-cursors-white
+Xcursor.size: 32
+
+!! dmenu
+dmenu.foreground: #bbbbbb
+dmenu.background: #222222
+dmenu.selforeground: #eeeeee
+dmenu.selbackground: #005577

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# Set wallpaper
+xwallpaper --center "$XDG_DATA_HOME/bg"
+
+# Load Xresources
+xsetroot -cursor_name left_ptr
+xrdb -merge "$XDG_CONFIG_HOME/X11/Xresources"
+[ -n "$xrdbpid" ] && wait "$xrdbpid"
+
+# Swap caps lock with escape
+setxkbmap -option caps:swapescape
+
+# Use menu button as a second win
+setxkbmap -option altwin:menu_win
+
+# Toggle keyboard layout between english and greek
+setxkbmap -layout us,gr -option grp:alt_shift_toggle
+
+# Multi-monitor layout
+xrandr --output HDMI-1 --above eDP-1 --primary
+
+# Disable laptop's built-in keyboard
+KeyboardID=$(xinput list |
+	grep -m 1 "AT Translated Set 2 keyboard" |
+	awk -F 'id=' '{print $2}' | awk '{print $1}')
+
+if [ -n $KeyboardID ]; then
+	xinput float $KeyboardID
+fi
+
+# Disable laptop's built-in touchpad
+TouchpadID=$(xinput list |
+	grep -Eio 'touchpad\s*id=[0-9]{1,2}' |
+	grep -Eo '[0-9]{1,2}')
+
+if [ -n $TouchpadID ]; then
+	xinput float $TouchpadID
+fi
+
+# Autostart
+sxhkd &
+blueman-applet &
+
+exec bspwm
