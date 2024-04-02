@@ -1,0 +1,8 @@
+if [[ -n $1 ]]; then
+	echo $AUTOPAIR_PAIRS[$1]
+elif [[ -n $2 ]]; then
+	local i
+	for i in ${(@k)AUTOPAIR_PAIRS}; do
+		[[ $2 == $AUTOPAIR_PAIRS[$i] ]] && echo $i && break
+	done
+fi

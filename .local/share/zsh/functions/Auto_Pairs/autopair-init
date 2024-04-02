@@ -1,0 +1,40 @@
+for util in\
+	_ap-get-pair\
+	_ap-balanced-p\
+	_ap-boundary-p\
+	_ap-can-pair-p\
+	_ap-can-skip-p\
+	_ap-can-delete-p\
+	_ap-next-to-boundary-p
+do
+	autoload -RUz $util || return 1
+done
+
+for widget in\
+	autopair-insert\
+	autopair-delete\
+	autopair-close
+do
+	autoload -RUz $widget || return 1
+	zle -N $widget
+done
+
+AUTOPAIR_BETWEEN_WHITESPACE=${AUTOPAIR_BETWEEN_WHITESPACE:-}
+AUTOPAIR_SPC_WIDGET=${AUTOPAIR_SPC_WIDGET:-"$(bindkey " " | cut -c5-)"}
+
+typeset -gA AUTOPAIR_PAIRS=(\` \` \' \' \" \" \{ \} \[ \] \( \) ' ' ' ')
+local p
+
+for p in ${(@k)AUTOPAIR_PAIRS}; do
+	bindkey "$p" autopair-insert
+	bindkey -M isearch "$p" self-insert
+
+	local rchar="$(_ap-get-pair $p)"
+	[ "$p" = "$rchar" ] && continue
+	bindkey "$rchar" autopair-close
+done
+
+bindkey "^?" autopair-delete
+bindkey "^h" autopair-delete
+bindkey -M isearch "^?" backward-delete-char
+bindkey -M isearch "^h" backward-delete-char

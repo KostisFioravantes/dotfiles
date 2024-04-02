@@ -1,0 +1,14 @@
+if [[ -z $LBUFFER ]]; then
+	return 1
+elif [[ $1 == $2 ]]; then
+	if [[ $1 == " " ]]; then
+		return 1
+	elif ! _ap-balanced-p $1 $2; then
+		return 1
+	fi
+fi
+if ! [[ -n $2 && $RBUFFER[1] == $2 && $LBUFFER[-1] != '\' ]]; then
+	return 1
+fi
+
+return 0

@@ -1,0 +1,5 @@
+if _ap-can-skip-p "$(_ap-get-pair "" $KEYS)" $KEYS; then
+	zle forward-char
+else
+	zle self-insert
+fi
