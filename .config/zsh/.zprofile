@@ -12,15 +12,11 @@ export TERM="kitty"\
 	TERMINAL="kitty"\
 	BROWSER="/bin/firefox"
 
-# X11
-# ===
-export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"\
-	XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"\
-	ERRFILE="$XDG_CONFIG_HOME/X11/.xsession-errors"
+# Xorg
+# ====
+export DISPLAY=${DISPLAY:-":0"}\
+	XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"\
+	XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"
 
 mkdir 2>&1 >/dev/null -p -m 700 ${XINITRC%/*}
-test -f $XAUTHORITY || install -m 600 /dev/null $_
-test -f $ERRFILE || install -m 600 /dev/null $_
-
-export DISPLAY=${DISPLAY:-":0"}
 exec startx $XINITRC
