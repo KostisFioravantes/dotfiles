@@ -28,6 +28,8 @@
 
 # X11
 !/.config/X11
+/.config/X11/.Xauthority
+/.config/X11/.xsession-errors
 
 # ZSH
 !/.config/zsh
