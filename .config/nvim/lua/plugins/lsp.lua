@@ -29,7 +29,6 @@ return {
 			clangd = {},
 			cssls = {},
 			dockerls = {},
-			eslint = {},
 			gopls = {},
 			html = {},
 			jsonls = {
@@ -37,14 +36,47 @@ return {
 					provideFormatter = false
 				}
 			},
+			docker_compose_language_service = {},
 			marksman = {},
 			pyright = {},
 			rust_analyzer = {},
 			svelte = {},
 			tsserver = {},
-			yamlls = {},
 			lua_ls = {},
-			docker_compose_language_service = {},
+			eslint = {
+				settings = {
+					codeAction = {
+						disableRuleComment = {
+							enable = true,
+							location = "separateLine"
+						},
+						showDocumentation = {
+							enable = true
+						}
+					},
+					codeActionOnSave = {
+						enable = true,
+						mode = "problems"
+					},
+					experimental = {
+						useFlatConfig = true
+					},
+					format = true,
+					nodePath = "",
+					onIgnoredFiles = "off",
+					problems = {
+						shortenToSingleLine = false
+					},
+					quiet = false,
+					rulesCustomizations = {},
+					run = "onType",
+					useESLintClass = false,
+					validate = "on",
+					workingDirectory = {
+						mode = "location"
+					}
+				}
+			},
 		},
 	},
 	config = function(_, opts)

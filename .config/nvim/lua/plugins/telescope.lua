@@ -18,6 +18,9 @@ return {
 		telescope.setup({
 			defaults = {
 				vimgrep_arguments = vimgrep_args,
+			},
+			pickers = {
+				hidden = true
 			}
 		})
 		telescope.load_extension("fzf")

@@ -6,9 +6,12 @@ export XDG_CACHE_HOME="$HOME/.cache"\
 export LANG="en_US.UTF-8"\
 	HISTFILE="/dev/null"\
 	LESSHISTFILE="/dev/null"\
+	PNPM_HOME="$XDG_DATA_HOME/pnpm"
 
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 PATH+=":/usr/local/go/bin"
 PATH+=":$HOME/.local/bin"
+PATH="$PNPM_HOME:$PATH"
 
 . "$HOME/.cargo/env"
+eval "$(fnm env)"
