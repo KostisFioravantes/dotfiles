@@ -27,23 +27,34 @@ return {
 		servers = {
 			bashls = {},
 			clangd = {},
-			cssls = {},
-			dockerls = {},
-			gopls = {},
-			html = {},
-			jsonls = {
+			cssls = {
 				init_options = {
 					provideFormatter = false
 				}
 			},
+			dockerls = {},
+			gopls = {},
+			html = {},
+			jsonls = {},
 			docker_compose_language_service = {},
 			marksman = {},
 			pyright = {},
-			rust_analyzer = {},
-			svelte = {},
 			tsserver = {},
+			rust_analyzer = {},
+			svelte = {
+				settings = {
+					format = false,
+				}
+			},
 			lua_ls = {},
+			asm_lsp = {},
 			eslint = {
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll"
+					})
+				end,
 				settings = {
 					codeAction = {
 						disableRuleComment = {
@@ -61,7 +72,7 @@ return {
 					experimental = {
 						useFlatConfig = true
 					},
-					format = true,
+					format = false,
 					nodePath = "",
 					onIgnoredFiles = "off",
 					problems = {

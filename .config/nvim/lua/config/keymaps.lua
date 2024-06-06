@@ -31,11 +31,17 @@ vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<leader>nr', ':NvimTreeRefresh<CR>')
 vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFile<CR>')
 
+-- Diagnostics
+-- <leader> is a space now
+vim.keymap.set('n', '<leader>do', ':lua vim.diagnostic.open_float()<CR>')
+vim.keymap.set('n', '<leader>d[', ':lua vim.diagnostic.goto_prev()<CR>')
+vim.keymap.set('n', '<leader>d]', ':lua vim.diagnostic.goto_next()<CR>')
 
 -- Telescope
 -- <leader> is a space now
 local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>fb', builtin.buffers)
+vim.keymap.set('n', '<leader>fd', builtin.diagnostics)
 vim.keymap.set('n', '<leader>ff', builtin.find_files)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-vim.keymap.set('n', '<leader>fb', builtin.buffers)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags)
