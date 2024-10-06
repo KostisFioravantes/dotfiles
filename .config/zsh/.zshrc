@@ -1,4 +1,3 @@
-: ${USER:="$(/bin/whoami)"}
 : ${HOME:="/home/$USER"}
 : ${XDG_CACHE_HOME:="$HOME/.cache"}
 : ${XDG_CONFIG_HOME:="$HOME/.config"}
@@ -36,13 +35,13 @@ fi
 
 # Prompt Theme
 # ============
-PS1=$'%(?.\n.)%F{3}%B\uF109 %b%f%m\uFF5C%F{3}%B\uF2C0 %b%f%n\n${${${vcs_info_msg_0_:A}%/.}:-%/}\n%F{2}%B%(#.#.$)%b%f '
+PS1=$'%(?.\n.)%F{3}%B\uF109%b %f%m\uFF5C%F{3}%B\uF2C0%b %f%n\n${${${vcs_info_msg_0_:A}%/.}:-%/}\n%F{2}%B%(#.#.$)%b%f '
 PS2='  '
 
 if autoload -RUz vcs_info; then
 	zstyle ':vcs_info:*' enable git
 	zstyle ':vcs_info:*' disable-patterns '/*/.git(|/*)'
-	zstyle ':vcs_info:git:*' formats $'%R/../%%U%r on %F{3}\uE0A0%f%b%%u/%S'
+	zstyle ':vcs_info:git:*' formats $'%R/../%%U%r on %F{3}\uE0A0 %f%b%%u/%S'
 	show_git_info() { vcs_info 2>/dev/null }
 	chpwd_functions+=(show_git_info)
 fi

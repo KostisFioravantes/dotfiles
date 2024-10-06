@@ -39,13 +39,7 @@ return {
 			docker_compose_language_service = {},
 			marksman = {},
 			pyright = {},
-			tsserver = {},
 			rust_analyzer = {},
-			svelte = {
-				settings = {
-					format = false,
-				}
-			},
 			lua_ls = {},
 			asm_lsp = {},
 			eslint = {
@@ -88,6 +82,7 @@ return {
 					}
 				}
 			},
+			tsserver = {},
 		},
 	},
 	config = function(_, opts)

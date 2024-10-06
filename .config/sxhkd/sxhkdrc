@@ -1,5 +1,6 @@
 super + r
-	bspc wm -r;\
+	bspc wm -r ;\
+	eww reload ;\
 	pkill -USR1 -x sxhkd
 
 # Volume Control
@@ -16,10 +17,17 @@ XF86AudioMute
 # Desktops
 # ========
 super + {_,shift + }Tab
-    bspc desktop -f {next,prev}.local
+    bspc desktop -f {next,prev}.local &&\
+	ws=$(bspc query -D -d focused --names) &&\
+	eww update current_ws=$ws
 
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+super + shift + {1-4}
+	bspc node -d {1-4}
+
+super + {1-4}
+	ws=$(( {1-4} )) ;\
+	bspc desktop -f $ws &&\
+	eww update current_ws=$ws
 
 # Windows
 # =======
@@ -50,7 +58,10 @@ super + shift + b
 	firefox --private-window
 
 super + y
-	scratchpad.sh dropdown
+	scratchpad.sh popup_term
+
+super + f
+	scratchpad.sh popup_file_manager
 
 # send the newest marked node to the newest preselected node
 #super + y

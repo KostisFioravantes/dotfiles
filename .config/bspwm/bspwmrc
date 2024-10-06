@@ -15,10 +15,12 @@ bspc config borderless_monocle  true
 bspc config focus_follows_pointer true
 
 # Rules
-bspc rule -a dropdown state=floating hidden=on
+bspc rule -a popup_term state=floating hidden=on
+bspc rule -a popup_file_manager state=floating hidden=on
 
-# Scratchpad
-kitty --class=dropdown &
+# Scratchpads
+kitty --class=popup_term &
+kitty --class=popup_file_manager -- lf &
 
 # Polybar
 killall -q polybar

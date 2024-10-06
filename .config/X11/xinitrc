@@ -40,6 +40,8 @@ fi
 
 # Autostart
 sxhkd &
+dunst &
 blueman-applet &
+eww open bar
 
 exec bspwm
