@@ -65,13 +65,6 @@ return {
 						stdin = true
 					}
 				end },
-				dart = { function()
-					return {
-						exe = "dart",
-						args = { 'format' },
-						stdin = true
-					}
-				end },
 				['*'] = {
 					-- require("formatter.filetypes.any").lsp_format,
 					-- require('formatter.filetypes.any').remove_trailing_whitespace
@@ -82,7 +75,6 @@ return {
 			for _, ft in ipairs(commonFT) do
 				formatterConfig[ft] = { prettierConfig }
 			end
-			-- Setup functions
 			formatter.setup({
 				logging = true,
 				filetype = formatterConfig,

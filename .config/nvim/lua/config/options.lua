@@ -1,94 +1,99 @@
-local cmd = vim.cmd
--- Set options (global/buffer/windows-scoped)
-local opt = vim.opt
--- Global variables
-local g = vim.g
-local s = vim.s
-
-cmd([[
+vim.cmd([[
 	filetype plugin indent on
 ]])
 
-opt.fillchars:append { eob = " " }
-opt.backspace = { 'eol', 'start', 'indent' } -- allow backspacing over everything in insert mode
-opt.clipboard = 'unnamedplus'                -- allow neovim to access the system clipboard
-vim.opt.fileencoding = 'utf-8'               -- the encoding written to a file
-opt.encoding = 'utf-8'
-opt.matchpairs = { '(:)', '{:}', '[:]', '<:>' }
-opt.syntax = 'enable'
+vim.opt.fillchars:append { eob = " " }
+vim.opt.backspace = { 'eol', 'start', 'indent' } -- allow backspacing over everything in insert mode
+vim.opt.clipboard = 'unnamedplus'                -- allow neovim to access the system clipboard
+vim.opt.fileencoding = 'utf-8'                   -- the encoding written to a file
+vim.opt.encoding = 'utf-8'
+vim.opt.matchpairs = { '(:)', '{:}', '[:]', '<:>' }
+vim.opt.syntax = 'enable'
 
 -- indention
-opt.tabstop = 4
-opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 -- search
-opt.hlsearch = true
-opt.ignorecase = true
-opt.smartcase = true
-opt.wildignore = opt.wildignore + { "*/node_modules/*", "*/.git/*", "*/vendor/*" }
-opt.wildmenu = true -- make tab completion for files/buffers act like bash
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.wildmenu = true
 
 -- ui
-opt.laststatus = 3
-opt.lazyredraw = true
+vim.opt.laststatus = 3
+vim.opt.lazyredraw = true
 
 -- Hide cmd line
-opt.cmdheight = 0
+vim.opt.cmdheight = 0
 
-opt.mouse = "a"
-opt.number = true
-opt.relativenumber = true
-opt.sidescrolloff = 3
-opt.signcolumn = "yes"
-opt.splitright = true
-opt.wrap = false
+vim.opt.mouse = "a"
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.sidescrolloff = 3
+vim.opt.signcolumn = "yes"
+vim.opt.splitright = true
+vim.opt.wrap = false
 
 -- backups
-opt.backup = false
-opt.swapfile = false
-opt.writebackup = false
+vim.opt.backup = false
+vim.opt.swapfile = false
+vim.opt.writebackup = false
 
 -- autocomplete
-opt.shortmess = opt.shortmess + {
+vim.opt.shortmess = vim.opt.shortmess + {
 	c = true
-} -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
+}
 
 -- By the way, -- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline.
-opt.showmode = false
+vim.opt.showmode = false
 
 -- perfomance
 -- remember N lines in history
-opt.history = 100    -- keep 100 lines of history
-opt.redrawtime = 1500
-opt.timeoutlen = 250 -- time to wait for a mapped sequence to complete (in milliseconds)
-opt.ttimeoutlen = 10
-opt.updatetime = 100 -- signify default updatetime 4000ms is not good for async update
+vim.opt.history = 100    -- keep 100 lines of history
+vim.opt.redrawtime = 1500
+vim.opt.timeoutlen = 250 -- time to wait for a mapped sequence to complete (in milliseconds)
+vim.opt.ttimeoutlen = 10
+vim.opt.updatetime = 100 -- signify default updatetime 4000ms is not good for async update
 
 -- theme
-opt.termguicolors = true
+vim.opt.termguicolors = true
 
 -- persistent undo
 -- Don"t forget to create folder $HOME/.local/share/nvim/undo
 local undodir = vim.fn.stdpath("data") .. "/undo"
-opt.undofile = true -- enable persistent undo
-opt.undodir = undodir
-opt.undolevels = 1000
-opt.undoreload = 10000
+vim.opt.undofile = true
+vim.opt.undodir = undodir
+vim.opt.undolevels = 1000
+vim.opt.undoreload = 10000
 
 -- fold
-opt.foldmethod = "marker"
-opt.foldlevel = 99
+vim.opt.foldmethod = "marker"
+vim.opt.foldlevel = 99
 
 -- Disable builtin plugins
 local disabled_built_ins = { "2html_plugin", "getscript", "getscriptPlugin", "gzip", "logipat", "netrw", "netrwPlugin",
 	"netrwSettings", "netrwFileHandlers", "matchit", "tar", "tarPlugin", "rrhelper",
 	"spellfile_plugin", "vimball", "vimballPlugin", "zip", "zipPlugin", "tutor", "rplugin",
-	"synmenu", "optwin", "compiler", "bugreport", "ftplugin" }
+	"synmenu", "compiler", "bugreport", "ftplugin" }
 
 for _, plugin in pairs(disabled_built_ins) do
-	g["loaded_" .. plugin] = 1
+	vim.g["loaded_" .. plugin] = 1
 end
 
 -- Colorscheme
 -- By default, use rose-pine
-cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("rose-pine")
+
+vim.api.nvim_create_user_command("LspClients", function()
+	local clients = vim.lsp.get_active_clients()
+	if not clients or vim.tbl_isempty(clients) then
+		print("No active LSP clients")
+		return
+	end
+
+	print("Active LSP clients:")
+	for _, client in ipairs(clients) do
+		print(" - Name: " .. client.name .. " | ID: " .. client.id)
+	end
+end, {})

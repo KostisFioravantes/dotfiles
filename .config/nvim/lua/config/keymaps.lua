@@ -12,30 +12,29 @@ Modes:
 ]]
 --
 
+local function wrap_cmd(cmd)
+	return function() vim.cmd(cmd) end
+end
+
 -- Move
 vim.keymap.set('n', '<C-w>h', '<Nop>')
 vim.keymap.set('n', '<C-w>j', '<Nop>')
 vim.keymap.set('n', '<C-w>k', '<Nop>')
 vim.keymap.set('n', '<C-w>l', '<Nop>')
 
-vim.keymap.set('n', '<C-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<C-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<C-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<C-l>', ':wincmd l<CR>')
+vim.keymap.set('n', '<C-h>', wrap_cmd('wincmd h'))
+vim.keymap.set('n', '<C-j>', wrap_cmd('wincmd j'))
+vim.keymap.set('n', '<C-k>', wrap_cmd('wincmd k'))
+vim.keymap.set('n', '<C-l>', wrap_cmd('wincmd l'))
 
--- Reload configuration without restart nvim
-vim.keymap.set('n', '<leader>r', ':so %<CR>')
-
--- NvimTree
-vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
-vim.keymap.set('n', '<leader>nr', ':NvimTreeRefresh<CR>')
-vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFile<CR>')
+-- nvim-tree
+vim.keymap.set('n', '<C-n>', wrap_cmd('NvimTreeToggle'))
 
 -- Diagnostics
 -- <leader> is a space now
-vim.keymap.set('n', '<leader>do', ':lua vim.diagnostic.open_float()<CR>')
-vim.keymap.set('n', '<leader>d[', ':lua vim.diagnostic.goto_prev()<CR>')
-vim.keymap.set('n', '<leader>d]', ':lua vim.diagnostic.goto_next()<CR>')
+vim.keymap.set('n', '<leader>do', wrap_cmd('lua vim.diagnostic.open_float()'))
+vim.keymap.set('n', '<leader>d[', wrap_cmd(':lua vim.diagnostic.goto_prev()'))
+vim.keymap.set('n', '<leader>d]', wrap_cmd(':lua vim.diagnostic.goto_next()'))
 
 -- Telescope
 -- <leader> is a space now

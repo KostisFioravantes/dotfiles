@@ -1,3 +1,25 @@
+local function on_attach(bufnr)
+	local api = require("nvim-tree.api")
+
+	local function opts(desc)
+		return {
+			desc = "nvim-tree: " .. desc,
+			buffer = bufnr,
+			noremap = true,
+			silent = true,
+			nowait = true
+		}
+	end
+
+	vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3e4451" })
+
+	api.config.mappings.default_on_attach(bufnr)
+
+	vim.keymap.del("n", "<C-]>", { buffer = bufnr })
+	vim.keymap.set("n", "<C-e>", api.tree.reload, opts("Refresh"))
+	vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
+end
+
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = {
@@ -6,6 +28,7 @@ return {
 		opt = true
 	},
 	opts = {
+		on_attach = on_attach,
 		filters = {
 			dotfiles = false
 		},
@@ -19,14 +42,30 @@ return {
 			update_root = false
 		},
 		view = {
-			adaptive_size = false,
-			side = "left",
-			width = 25,
-			preserve_window_proportions = true
+			adaptive_size = true,
+			signcolumn = "auto",
+			cursorline = true,
+			debounce_delay = 30,
+			float = {
+				enable = true,
+				quit_on_focus_loss = true,
+				open_win_config = {
+					relative = "editor",
+					border = { "", "", "", "│", "", "", "", "", },
+					height = 100,
+					width = 30,
+					row = 0,
+					col = 0,
+				}
+			}
+			-- preserve_window_proportions = true
 		},
 		git = {
-			enable = false,
-			ignore = true
+			enable = true,
+			ignore = false
+		},
+		sort = {
+			sorter = "extension"
 		},
 		filesystem_watchers = {
 			enable = true

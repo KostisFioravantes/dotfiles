@@ -8,16 +8,27 @@ autocmd("BufWritePre", {
 	command = ":silent lua vim.lsp.buf.format()"
 })
 
--- Don"t auto commenting new lines
-autocmd("BufEnter", {
-	pattern = "",
-	command = "set fo-=c fo-=r fo-=o"
-})
-
 autocmd("Filetype", {
 	pattern = { "gitcommit", "markdown", "text" },
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
+	end
+})
+
+autocmd("BufEnter", {
+	pattern = "*NvimTree*",
+	callback = function()
+		vim.cmd("highlight Cursor blend=100")
+		vim.cmd("set guicursor+=a:Cursor/lCursor")
+	end
+
+})
+
+autocmd("BufLeave", {
+	pattern = "*NvimTree*",
+	callback = function()
+		vim.cmd("highlight Cursor blend=0")
+		vim.cmd("set guicursor-=a:Cursor/lCursor")
 	end
 })

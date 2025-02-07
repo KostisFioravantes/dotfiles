@@ -10,32 +10,33 @@
 !/.local/share
 /.local/share/*
 
+# Ignore everything by default in .config and .local
+/.config/*
+/.local/*
 
-# BSPWM
+# Include specific files at root level
+!.zshenv
+!.gitignore
+
+# Include specific directories within .config
 !/.config/bspwm
-
-# KITTY
+!/.config/git
 !/.config/kitty
-
-# NVIM
 !/.config/nvim
-
-# POLYBAR
 !/.config/polybar
-
-# SXHKD
 !/.config/sxhkd
-
-# X11
 !/.config/X11
+!/.config/zsh
+
+# Exclude specific files within .config/X11
 /.config/X11/.Xauthority
 /.config/X11/.xsession-errors
 
-# ZSH
-!/.config/zsh
-!/.local/share/zsh
-!/.local/share/zsh/**
+# Include specific subdirectories and files within .local
+!/.local/bin
 !/.local/bin/Aliases
 !/.local/bin/History
 !/.local/bin/List_Dir
 !/.local/bin/*.sh
+!/.local/share/zsh
+!/.local/share/zsh/**

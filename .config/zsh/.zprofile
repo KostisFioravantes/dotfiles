@@ -4,7 +4,9 @@
 : ${XDG_CONFIG_HOME:="$HOME/.config"}
 : ${XDG_CACHE_HOME:="$HOME/.cache"}
 
-export EDITOR="vi" VISUAL="vi"
+export EDITOR="vi"\
+	VISUAL="vi"\
+	GIT_EDITOR="vi"
 
 [ $XDG_VTNR -gt 2 ] && return
 

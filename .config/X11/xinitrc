@@ -18,24 +18,25 @@ setxkbmap -option altwin:menu_win
 setxkbmap -layout us,gr -option grp:alt_shift_toggle
 
 # Multi-monitor layout
-xrandr --output HDMI-1 --above eDP-1 --primary
+xrandr --output HDMI-1 --above eDP-1
+xrandr --output DP-1 --primary
 
 # Disable laptop's built-in keyboard
-KeyboardID=$(xinput list |
-	grep -m 1 "AT Translated Set 2 keyboard" |
-	awk -F 'id=' '{print $2}' | awk '{print $1}')
+KeyboardID=$(/bin/xinput list |
+	/bin/grep -m 1 "AT Translated Set 2 keyboard" |
+	/bin/awk -F 'id=' '{print $2}' | awk '{print $1}')
 
 if [ -n $KeyboardID ]; then
-	xinput float $KeyboardID
+	/bin/xinput float $KeyboardID
 fi
 
 # Disable laptop's built-in touchpad
-TouchpadID=$(xinput list |
-	grep -Eio 'touchpad\s*id=[0-9]{1,2}' |
-	grep -Eo '[0-9]{1,2}')
+TouchpadID=$(/bin/xinput list |
+	/bin/grep -Eio 'touchpad\s*id=[0-9]{1,2}' |
+	/bin/grep -Eo '[0-9]{1,2}')
 
 if [ -n $TouchpadID ]; then
-	xinput float $TouchpadID
+	/bin/xinput float $TouchpadID
 fi
 
 # Autostart

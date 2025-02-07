@@ -1,7 +1,7 @@
-super + r
-	bspc wm -r ;\
-	eww reload ;\
-	pkill -USR1 -x sxhkd
+#super + r
+#	bspc wm -r ;\
+#	eww reload ;\
+#	pkill -USR1 -x sxhkd
 
 # Volume Control
 # ==============
@@ -50,6 +50,9 @@ super + shift + semicolon
 
 super + t
 	kitty
+
+super + s
+	sh ~/.config/kitty/scripts/show_kitty_sessions.sh
 
 super + b
 	firefox
