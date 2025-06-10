@@ -55,7 +55,7 @@ super + s
 	sh ~/.config/kitty/scripts/show_kitty_sessions.sh
 
 super + b
-	firefox
+	google-chrome
 
 super + shift + b
 	firefox --private-window
