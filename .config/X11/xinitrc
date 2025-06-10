@@ -18,8 +18,8 @@ setxkbmap -option altwin:menu_win
 setxkbmap -layout us,gr -option grp:alt_shift_toggle
 
 # Multi-monitor layout
-xrandr --output HDMI-1 --above eDP-1
-xrandr --output DP-1 --primary
+xrandr --output eDP-1 --off
+xrandr --output HDMI-1 --primary
 
 # Disable laptop's built-in keyboard
 KeyboardID=$(/bin/xinput list |
