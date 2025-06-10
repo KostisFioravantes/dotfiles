@@ -10,10 +10,6 @@ vim.opt.encoding = 'utf-8'
 vim.opt.matchpairs = { '(:)', '{:}', '[:]', '<:>' }
 vim.opt.syntax = 'enable'
 
--- indention
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-
 -- search
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
